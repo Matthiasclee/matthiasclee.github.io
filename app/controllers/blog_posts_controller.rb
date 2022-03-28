@@ -10,6 +10,12 @@ class BlogPostsController < ApplicationController
   def show
   end
 
+  def embed
+    response.headers.delete "X-Frame-Options"
+    @blog_post = BlogPost.find(params[:id])
+    render partial: 'blog_posts/embed', layout: false
+  end
+
   # GET /blog_posts/new
   def new
     @blog_post = BlogPost.new

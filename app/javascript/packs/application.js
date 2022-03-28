@@ -17,3 +17,9 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+function copyToClipboard(id) {
+  var copyText = document.getElementById(id);
+  navigator.clipboard.writeText(copyText.innerHTML.replace('&lt;', '<').replace('&gt;', '>').replace('&lt;', '<').replace('&gt;', '>'));
+}
+window.copyToClipboard = copyToClipboard

@@ -1,0 +1,28 @@
+<div class="card" style="width:75%;margin-left:12%;margin-right:12%;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @blog_post.title %></h5>
+    <p class="card-text"><%= @blog_post.content %></p>
+    <a href="#" class="card-link">Share</a>
+    <a class="card-link" data-bs-toggle="modal" data-bs-target="#embedModal">Embed</a>
+  </div>
+</div>
+
+<div class="modal fade" id="embedModal" tabindex="-1" aria-labelledby="embedModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="embedModalLabel">Embed</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <code style='color:black;' id='embedcode'>
+          <%= "<embed width='450px;' height='500px;' src='#{request.base_url+blog_post_embed_path(@blog_post)}'></embed>" %>
+        </code>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary", onclick='copyToClipboard("embedcode")'>Copy</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
