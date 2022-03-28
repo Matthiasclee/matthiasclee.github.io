@@ -18,15 +18,20 @@ class BlogPostsController < ApplicationController
 
   # GET /blog_posts/new
   def new
+    head 401 if !(current_user && current_user.email == 'matthias@matthiasclee.com')
+
     @blog_post = BlogPost.new
   end
 
   # GET /blog_posts/1/edit
   def edit
+    head 401 if !(current_user && current_user.email == 'matthias@matthiasclee.com')
   end
 
   # POST /blog_posts or /blog_posts.json
   def create
+    head 401 if !(current_user && current_user.email == 'matthias@matthiasclee.com')
+
     @blog_post = BlogPost.new(blog_post_params)
 
     respond_to do |format|
@@ -42,6 +47,8 @@ class BlogPostsController < ApplicationController
 
   # PATCH/PUT /blog_posts/1 or /blog_posts/1.json
   def update
+    head 401 if !(current_user && current_user.email == 'matthias@matthiasclee.com')
+
     respond_to do |format|
       if @blog_post.update(blog_post_params)
         format.html { redirect_to blog_post_url(@blog_post), notice: "Blog post was successfully updated." }
@@ -55,6 +62,8 @@ class BlogPostsController < ApplicationController
 
   # DELETE /blog_posts/1 or /blog_posts/1.json
   def destroy
+    head 401 if !(current_user && current_user.email == 'matthias@matthiasclee.com')
+
     @blog_post.destroy
 
     respond_to do |format|
