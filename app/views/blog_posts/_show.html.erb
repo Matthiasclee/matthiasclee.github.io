@@ -2,8 +2,8 @@
   <div class="card-body">
     <h5 class="card-title"><%= @blog_post.title %></h5>
     <p class="card-text"><%= @blog_post.content %></p>
-    <a class="card-link" data-bs-toggle="modal" data-bs-target="#shareModal">Share</a>
-    <a class="card-link" data-bs-toggle="modal" data-bs-target="#embedModal">Embed</a>
+    <a class="card-link" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="unSuccessBtn('copybutton')">Share</a>
+    <a class="card-link" data-bs-toggle="modal" data-bs-target="#embedModal" onclick="unSuccessBtn('embedcopy')">Embed</a>
   </div>
 </div>
 <div class="modal fade" id="embedModal" tabindex="-1" aria-labelledby="embedModalLabel" aria-hidden="true">
@@ -19,7 +19,7 @@
         </code>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary", onclick='copyToClipboard("embedcode")'>Copy</button>
+        <button type="button" class="btn btn-primary" id="embedcopy" onclick='copyToClipboard("embedcode");successBtn("embedcopy")'>Copy</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -33,9 +33,15 @@
         <h5 class="modal-title" id="shareModalLabel">Share</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="text-align:center;">
+        <div>
+          <p id='link' style='display:inline-block;'>
+            <%=request.base_url+blog_post_path(@blog_post)%>
+          </p>
+
+          <button style='display:inline-block;margin-left:5px;' id='copybutton' class='btn btn-primary' onclick="copyToClipboard('link');successBtn('copybutton')">Copy</button>
+        </div>
         <h1>
-          <a href="#" onclick='navigator.clipboard.writeText("<%= request.base_url+blog_post_path(@blog_post) %>");alert("Link copied")'><%= fa_icon 'link' %></a>
           <a style='color:black;' target="_blank" href="mailto:?subject=<%= @blog_post.title %>&body=<%= request.base_url+blog_post_path(@blog_post) %>"><%= fa_icon 'envelope' %></a>
           <a style='color:#ff4500;' target="_blank" href="https://www.reddit.com/submit?url=<%= request.base_url+blog_post_path(@blog_post) %>&title=<%= @blog_post.title %>"><%= fa_icon 'brands reddit-alien' %></a>
           <a style='color:#00acee;' target="_blank" href="https://twitter.com/intent/tweet?url=<%= request.base_url+blog_post_path(@blog_post) %>&text=<%= @blog_post.title %>"><%= fa_icon 'brands twitter' %></a>

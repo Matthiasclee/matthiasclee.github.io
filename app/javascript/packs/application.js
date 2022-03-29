@@ -23,3 +23,17 @@ function copyToClipboard(id) {
   navigator.clipboard.writeText(copyText.innerHTML.replace('&lt;', '<').replace('&gt;', '>').replace('&lt;', '<').replace('&gt;', '>'));
 }
 window.copyToClipboard = copyToClipboard
+
+function successBtn(id) {
+  var element = document.getElementById(id);
+  element.classList.remove('btn-primary');
+  element.classList.add('btn-success');
+}
+window.successBtn = successBtn
+
+function unSuccessBtn(id) {
+  var element = document.getElementById(id);
+  element.classList.add('btn-primary');
+  element.classList.remove('btn-success');
+}
+window.unSuccessBtn = unSuccessBtn
