@@ -1,0 +1,46 @@
+<div class="row justify-content-center" style='margin-top:10%; width:100%'>
+
+  <div class="col-md-3">
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h5 class="card-title">Recent talks</h5>
+
+        <% @talks = Talk.all.sort_by(&:date).reverse[0..1] %>
+        <% @talks.each do |talk| %>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title mb-0"><%= link_to talk.conference, talk, style: 'text-decoration:none;color:black;' %></h5>
+              <h6 class="card-subtitle mb-2 mt-0"><%= link_to talk.name, talk, style: 'text-decoration:none;color:black;' %></h6>
+              <h6 class="card-subtitle mb-2 text-muted"><%= talk.date.strftime("%m/%d/%Y") %></h6>
+              <h6 class="card-subtitle mb-2 text-muted"><%= talk.location %></h6>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-3">
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h5 class="card-title">Recent blog posts</h5>
+
+        <% @blog_posts = BlogPost.all.sort_by(&:created_at).reverse[0..1] %>
+        <% @blog_posts.each do |blog_post| %>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to blog_post.title, blog_post, style: 'text-decoration:none;color:black;' %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= blog_post.created_at.strftime("%m/%d/%Y") %></h6>
+              <% if current_user && current_user.email == 'matthias@matthiasclee.com' %>
+                <%= link_to 'Edit', edit_blog_post_path(blog_post), class:"card-link" %>
+                <%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
