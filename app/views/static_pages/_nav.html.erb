@@ -15,6 +15,19 @@
         <li class="nav-item">
           <a class="nav-link <%= "active" if params[:controller]=="talks" %>" href="/talks">Talks</a>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Contact me
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to 'Email', 'mailto:matthias@matthiasclee.com', class: 'dropdown-item' %></li>
+            <li><%= link_to 'Phone', 'tel:7253334223', class: 'dropdown-item' %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to 'Github', 'https://github.com/Matthiasclee', class: 'dropdown-item' %></li>
+            <li><%= link_to 'Reddit', 'https://reddit.com/u/matthiaslee11', class: 'dropdown-item' %></li>
+            <li><%= link_to 'Twitter', 'https://twitter.com/Matthiasclee', class: 'dropdown-item' %></li>
+          </ul>
+        </li>
       </ul>
     </div>
     <p class="navbar-text float-right">
