@@ -12,6 +12,7 @@
       <h5 class="card-title mb-0"><%= link_to talk.conference, talk, style: 'text-decoration:none;color:black;' %></h5>
       <h6 class="card-subtitle mb-2 mt-0"><%= link_to talk.name, talk, style: 'text-decoration:none;color:black;' %></h6>
       <h6 class="card-subtitle mb-2 text-muted"><%= talk.date.strftime("%m/%d/%Y") %></h6>
+      <h6 class="card-subtitle mb-2 text-muted"><%= talk.location %></h6>
     </div>
   </div>
 <% end %>
