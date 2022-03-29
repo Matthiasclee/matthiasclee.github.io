@@ -10,7 +10,6 @@ import "channels"
 import "bootstrap"
 import "trix"
 import "@rails/actiontext"
-import '@fortawesome/fontawesome-free/css/all.css'
 
 Rails.start()
 Turbolinks.start()
