@@ -15,3 +15,7 @@
  *= require bootstrap
  *= require font-awesome
  */
+
+.card{
+  text-align:center;
+}

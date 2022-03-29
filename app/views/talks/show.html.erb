@@ -1,29 +1,12 @@
 <p id="notice"><%= notice %></p>
+<% talk=@talk %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @talk.name %>
-</p>
+<div class="card" style="width:50%;margin-left:23%;margin-right:23%;">
+  <div class="card-body">
+    <h5 class="card-title mb-0"><%= link_to talk.conference, talk.website, style: 'text-decoration:none' %></h5>
+    <h5 class="card-subtitle mb-2 mt-0"><%= talk.name %> <%= link_to fa_icon("download"), talk.download, style: 'text-decoration:none' %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= talk.date.strftime("%m/%d/%Y") %></h6>
+  </div>
+</div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @talk.location %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @talk.website %>
-</p>
-
-<p>
-  <strong>Download:</strong>
-  <%= @talk.download %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @talk.date %>
-</p>
-
-<%= link_to 'Edit', edit_talk_path(@talk) %> |
 <%= link_to 'Back', talks_path %>
