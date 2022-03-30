@@ -1,6 +1,7 @@
 <div class="card" style="width:75%;margin-left:12%;margin-right:12%;text-align:left;">
   <div class="card-body">
     <h5 class="card-title"><%= @blog_post.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= @blog_post.created_at.strftime("%m/%d/%Y") %></h6>
     <p class="card-text"><%= @blog_post.content %></p>
     <a class="card-link" data-bs-toggle="modal" data-bs-target="#shareModal" onclick="unSuccessBtn('copybutton')">Share</a>
     <a class="card-link" data-bs-toggle="modal" data-bs-target="#embedModal" onclick="unSuccessBtn('embedcopy')">Embed</a>
