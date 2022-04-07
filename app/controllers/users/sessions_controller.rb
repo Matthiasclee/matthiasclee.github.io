@@ -3,19 +3,23 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
-
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    helpers.no_tfa do
+      helpers.require_tfa(phone_number: User.find_by(email: sign_in_params[:email]).phone, url: request.url, http_params: helpers.tfa_friendly_params(params))
+    end
+    helpers.if_tfa do |tfa|
+      if tfa.phone == User.find_by(email: sign_in_params[:email]).phone
+        super
+      else
+        head 401
+      end
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
-  #   super
+  #  super
   # end
 
   # protected
